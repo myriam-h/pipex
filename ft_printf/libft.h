@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdarg.h>
-# include  <stdint.h>
+# include <stdint.h>
 # include "ft_printf.h"
 
 int	ft_putnbr_hex(unsigned int n, int isupper);

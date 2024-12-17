@@ -1,69 +1,88 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split_colon.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mhabchi <mhabchi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/17 22:26:59 by mhabchi           #+#    #+#             */
+/*   Updated: 2024/12/17 22:29:02 by mhabchi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../pipex.h"
 
-int ft_iscolon(char c)
+int	ft_iscolon(char c)
 {
-    return (c == ':');
-}
-    
-int count_words_colon(char *str)
-{
-    int count;
-
-    count = 0;
-    while (*str)
-    {
-        if (!ft_iscolon(*str))
-            count++;
-        while (*str && !ft_iscolon(*str))
-            str++;
-        if (*str && ft_iscolon(*str))
-            str++;
-    }
-    return (count);
+	return (c == ':');
 }
 
-char *malloc_word_colon(char *str)
+int	count_words_colon(char *str)
 {
-    char *word;
-    int i;
+	int	count;
 
-    i = 0;
-    while (str[i] && !ft_iscolon(str[i]))
-        i++;
-    word = (char *)malloc(sizeof(char) * (i + 1));
-    if (!word)
-        return (NULL);
-    i = 0;
-    while (str[i] && !ft_iscolon(str[i]))
-    {
-        word[i] = str[i];
-        i++;
-    }
-    word[i] = '\0';
-    return (word);
+	count = 0;
+	while (*str)
+	{
+		if (!ft_iscolon(*str))
+			count++;
+		while (*str && !ft_iscolon(*str))
+			str++;
+		if (*str && ft_iscolon(*str))
+			str++;
+	}
+	return (count);
 }
 
-char **ft_split_colon(char *str)
+char	*malloc_word_colon(char *str)
 {
-    int i;
-    char **arr;
+	char	*word;
+	int		i;
 
-    arr = (char **)malloc(sizeof(char *) * (count_words_colon(str) + 1));
-    if (!arr)
-        return (NULL);
-    i = 0;
-    while (*str)
-    {
-        if (!ft_iscolon(*str))
-        {
-            arr[i] = malloc_word_colon(str);
-            i++;
-        }
-        while (*str && !ft_iscolon(*str))
-            str++;
-        if (*str && ft_iscolon(*str))
-            str++;
-    }
-    arr[i] = NULL;
-    return (arr);
+	i = 0;
+	while (str[i] && !ft_iscolon(str[i]))
+		i++;
+	word = malloc(sizeof(char) * (i + 1));
+	if (!word)
+		return (NULL);
+	i = 0;
+	while (str[i] && !ft_iscolon(str[i]))
+	{
+		word[i] = str[i];
+		i++;
+	}
+	word[i] = '\0';
+	return (word);
+}
+
+char	**ft_split_colon(char *str)
+{
+	char	**arr;
+	int		i;
+
+	arr = malloc(sizeof(char *) * (count_words_colon(str) + 1));
+	if (!arr)
+		return (NULL);
+	i = 0;
+	while (*str)
+	{
+		if (!ft_iscolon(*str))
+		{
+			arr[i] = malloc_word_colon(str);
+			if (!arr[i])
+			{
+				while (i > 0)
+					free(arr[--i]);
+				free(arr);
+				return (NULL);
+			}
+			i++;
+		}
+		while (*str && !ft_iscolon(*str))
+			str++;
+		if (*str && ft_iscolon(*str))
+			str++;
+	}
+	arr[i] = NULL;
+	return (arr);
 }
