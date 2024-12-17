@@ -6,7 +6,7 @@
 /*   By: mhabchi <mhabchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 22:19:06 by mhabchi           #+#    #+#             */
-/*   Updated: 2024/12/17 22:25:14 by mhabchi          ###   ########.fr       */
+/*   Updated: 2024/12/17 23:27:01 by mhabchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ typedef struct s_pipe
 	int		fd_outfile;
 }			t_s_pipe;
 
-void	check_if_NULL_p(t_s_pipe *p, char *pathname, char **command,
+void	check_if_n_p(t_s_pipe *p, char *pathname, char **command,
 			char **directories);
-void	check_if_NULL_c(t_s_pipe *p, char **command, char **directories);
-void	check_if_NULL_d(t_s_pipe *p, char **directories);
+void	check_if_n_c(t_s_pipe *p, char **command, char **directories);
+void	check_if_n_d(t_s_pipe *p, char **directories);
 void	ft_free(char **var);
 void	free_exit_process(t_s_pipe *p, char **command, char **directories);
 void	pipe_ends_manage(int pipe_fd[2], int std, int fd, bool redirection);
@@ -52,6 +52,7 @@ void	handle_files(t_s_pipe *p, char *argv[], int argc);
 void	set_data(t_s_pipe *p);
 void	pipex(int argc, char *argv[], char *env[]);
 void	prog_exit(char *str, bool free_space);
+void	ft_free0(t_s_pipe *p);
 char	*duplicate_word(char *str);
 void	set_commands(t_s_pipe *p, char *argv[], int argc);
 char	*is_available(t_s_pipe *p, char **command, char **directories);

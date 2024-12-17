@@ -6,11 +6,17 @@
 /*   By: mhabchi <mhabchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 22:36:53 by mhabchi           #+#    #+#             */
-/*   Updated: 2024/12/17 22:36:54 by mhabchi          ###   ########.fr       */
+/*   Updated: 2024/12/17 23:26:09 by mhabchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
+
+void	ft_free0(t_s_pipe *p)
+{
+	ft_free(p->shell_commands);
+	prog_exit("Memory allocation failure", false);
+}
 
 char	*duplicate_word(char *str)
 {
@@ -54,10 +60,7 @@ void	set_commands(t_s_pipe *p, char *argv[], int argc)
 	{
 		p->shell_commands[k] = duplicate_word(argv[j]);
 		if (!p->shell_commands[k])
-		{
-			ft_free(p->shell_commands);
-			prog_exit("Memory allocation failure", false);
-		}
+			ft_free0(p);
 		k++;
 		j++;
 	}

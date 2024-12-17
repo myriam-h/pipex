@@ -6,7 +6,7 @@
 /*   By: mhabchi <mhabchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 22:26:59 by mhabchi           #+#    #+#             */
-/*   Updated: 2024/12/17 22:29:02 by mhabchi          ###   ########.fr       */
+/*   Updated: 2024/12/17 23:41:30 by mhabchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,22 +60,15 @@ char	**ft_split_colon(char *str)
 	char	**arr;
 	int		i;
 
-	arr = malloc(sizeof(char *) * (count_words_colon(str) + 1));
+	i = 0;
+	arr = (char **)malloc(sizeof(char *) * (count_words_colon(str) + 1));
 	if (!arr)
 		return (NULL);
-	i = 0;
 	while (*str)
 	{
 		if (!ft_iscolon(*str))
 		{
 			arr[i] = malloc_word_colon(str);
-			if (!arr[i])
-			{
-				while (i > 0)
-					free(arr[--i]);
-				free(arr);
-				return (NULL);
-			}
 			i++;
 		}
 		while (*str && !ft_iscolon(*str))

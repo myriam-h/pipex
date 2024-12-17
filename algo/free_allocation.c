@@ -6,13 +6,13 @@
 /*   By: mhabchi <mhabchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 22:37:13 by mhabchi           #+#    #+#             */
-/*   Updated: 2024/12/17 22:39:29 by mhabchi          ###   ########.fr       */
+/*   Updated: 2024/12/17 23:18:22 by mhabchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-void	check_if_NULL_p(t_s_pipe *p, char *pathname, char **command,
+void	check_if_n_p(t_s_pipe *p, char *pathname, char **command,
 			char **directories)
 {
 	if (!pathname)
@@ -24,7 +24,7 @@ void	check_if_NULL_p(t_s_pipe *p, char *pathname, char **command,
 	}
 }
 
-void	check_if_NULL_c(t_s_pipe *p, char **command, char **directories)
+void	check_if_n_c(t_s_pipe *p, char **command, char **directories)
 {
 	if (!command)
 	{
@@ -34,7 +34,7 @@ void	check_if_NULL_c(t_s_pipe *p, char **command, char **directories)
 	}
 }
 
-void	check_if_NULL_d(t_s_pipe *p, char **directories)
+void	check_if_n_d(t_s_pipe *p, char **directories)
 {
 	if (!directories)
 	{

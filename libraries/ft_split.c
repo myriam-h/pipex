@@ -6,7 +6,7 @@
 /*   By: mhabchi <mhabchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 22:29:37 by mhabchi           #+#    #+#             */
-/*   Updated: 2024/12/17 22:29:39 by mhabchi          ###   ########.fr       */
+/*   Updated: 2024/12/17 23:38:10 by mhabchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,10 @@ char	**ft_split(char *str)
 	char	**arr;
 	int		i;
 
-	if (!str)
-		return (NULL);
-	arr = malloc(sizeof(char *) * (count_words(str) + 1));
-	if (!arr)
-		return (NULL);
 	i = 0;
+	arr = (char **)malloc(sizeof(char *) * (count_words(str) + 1));
+	if (!arr || !str)
+		return (NULL);
 	while (*str)
 	{
 		while (*str && ft_isspace(*str))
@@ -73,13 +71,6 @@ char	**ft_split(char *str)
 		if (*str && !ft_isspace(*str))
 		{
 			arr[i] = malloc_word(str);
-			if (!arr[i])
-			{
-				while (i > 0)
-					free(arr[--i]);
-				free(arr);
-				return (NULL);
-			}
 			i++;
 		}
 		while (*str && !ft_isspace(*str))

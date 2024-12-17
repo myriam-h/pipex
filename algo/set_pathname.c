@@ -6,7 +6,7 @@
 /*   By: mhabchi <mhabchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 22:36:37 by mhabchi           #+#    #+#             */
-/*   Updated: 2024/12/17 22:36:39 by mhabchi          ###   ########.fr       */
+/*   Updated: 2024/12/17 23:19:04 by mhabchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*is_available(t_s_pipe *p, char **command, char **directories)
 			return (NULL);
 		pathname = ft_strjoin(tempo, command[0]);
 		free(tempo);
-		check_if_NULL_p(p, pathname, command, directories);
+		check_if_n_p(p, pathname, command, directories);
 		if (access(pathname, X_OK) == 0)
 			return (pathname);
 		free(pathname);
@@ -46,7 +46,7 @@ void	retrieve_commands_path(t_s_pipe *p, char **directories)
 	{
 		command = ft_split(p->shell_commands[i]);
 		i++;
-		check_if_NULL_c(p, command, directories);
+		check_if_n_c(p, command, directories);
 		path = is_available(p, command, directories);
 		if (path != NULL)
 		{
@@ -87,7 +87,7 @@ void	set_pathname(t_s_pipe *p, char *env[])
 		prog_exit("PATH not found", false);
 	}
 	directories = ft_split_colon(path_value);
-	check_if_NULL_d(p, directories);
+	check_if_n_d(p, directories);
 	retrieve_commands_path(p, directories);
 	ft_free(directories);
 }
