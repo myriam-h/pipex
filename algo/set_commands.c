@@ -6,7 +6,7 @@
 /*   By: mhabchi <mhabchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 22:36:53 by mhabchi           #+#    #+#             */
-/*   Updated: 2024/12/17 23:26:09 by mhabchi          ###   ########.fr       */
+/*   Updated: 2024/12/18 05:22:50 by mhabchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*duplicate_word(char *str)
 	char	*word;
 
 	len = ft_len(str);
-	word = malloc(sizeof(char) * (len + 1));
+	word = (char *)malloc(sizeof(char) * (len + 1));
 	if (!word)
 		return (NULL);
 	i = 0;
@@ -53,7 +53,7 @@ void	set_commands(t_s_pipe *p, char *argv[], int argc)
 	}
 	else
 		len = argc - 3;
-	p->shell_commands = malloc(sizeof(char *) * (len + 1));
+	p->shell_commands = (char **)malloc(sizeof(char *) * (len + 1));
 	if (!p->shell_commands)
 		prog_exit("Memory allocation failure", false);
 	while (j < argc - 1)

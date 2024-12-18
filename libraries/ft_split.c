@@ -6,7 +6,7 @@
 /*   By: mhabchi <mhabchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 22:29:37 by mhabchi           #+#    #+#             */
-/*   Updated: 2024/12/17 23:38:10 by mhabchi          ###   ########.fr       */
+/*   Updated: 2024/12/18 05:05:12 by mhabchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_isspace(char c)
 {
-	return (c == ' ' || (c >= 9 && c <= 13));
+	return (c == 32 || (c >= 9 && c <= 13));
 }
 
 int	count_words(char *str)
@@ -42,7 +42,7 @@ char	*malloc_word(char *str)
 	i = 0;
 	while (str[i] && !ft_isspace(str[i]))
 		i++;
-	word = malloc(sizeof(char) * (i + 1));
+	word = (char *)malloc(sizeof(char) * (i + 1));
 	if (!word)
 		return (NULL);
 	i = 0;
